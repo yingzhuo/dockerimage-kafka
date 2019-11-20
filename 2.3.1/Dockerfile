@@ -1,4 +1,4 @@
-FROM openjdk:8u232-jre-stretch
+FROM registry.cn-shanghai.aliyuncs.com/yingzhuo/java:8-jre
 
 MAINTAINER 应卓 yingzhor@gmail.com
 
@@ -19,7 +19,7 @@ RUN \
 
 COPY ./config/zoo.cfg /opt/zookeeper/conf/zoo.cfg
 
-COPY ./config/server.properties /opt/kafka/config/server.properties
+COPY ./config/server.properties.template /opt/server.properties.template
 
 ENV \
     KAFKA_HOME=/opt/kafka \
