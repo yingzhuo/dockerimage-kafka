@@ -32,4 +32,8 @@ EXPOSE \
         2181 \
         9092
 
+VOLUME \
+        /var/zookeeper \
+        /var/kafka-logs
+
 CMD ["docker-entrypoint.sh"]
