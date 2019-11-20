@@ -1,6 +1,8 @@
 # dockerimage-kafka
 
-Use `docker-compose` please!
+单节点`kafka`，请使用`docker-compose`启动之。
+
+**注意:** 请务必为容器配置`KAFKA_ADVERTISED_HOST_NAME`环境变量。
 
 ```yaml
 version: "3.7"
@@ -15,4 +17,6 @@ services:
     volumes:
     - "${PWD}/data/zookeeper/:/var/zookeeper"
     - "${PWD}/data/kafka-logs/:/var/kafka-logs/"
+    environment:
+    - "KAFKA_ADVERTISED_HOST_NAME=192.168.99.114"
 ```
