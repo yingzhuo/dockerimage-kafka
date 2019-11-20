@@ -1,7 +1,5 @@
 # dockerimage-kafka
 
-## use it! 
-
 Use `docker-compose` please!
 
 ```yaml
