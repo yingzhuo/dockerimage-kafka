@@ -6,12 +6,12 @@ COPY ./docker-entrypoint.sh /bin/docker-entrypoint.sh
 
 RUN \
     wget "https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz" -O /opt/zookeeper-3.4.14.tar.gz && \
-    wget "http://mirror.bit.edu.cn/apache/kafka/2.3.1/kafka_2.12-2.3.1.tgz" -O /opt/kafka_2.12-2.3.1.tgz && \
-    tar -zxf /opt/kafka_2.12-2.3.1.tgz -C /opt && \
+    wget "https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/2.3.1/kafka_2.12-2.3.1.tgz" -O /opt/kafka_2.12-2.3.1.tar.gz && \
     tar -zxf /opt/zookeeper-3.4.14.tar.gz -C /opt && \
+    tar -zxf /opt/kafka_2.12-2.3.1.tgr.gz -C /opt && \
     ln -sf /opt/zookeeper-3.4.14/ /opt/zookeeper && \
     ln -sf /opt/kafka_2.12-2.3.1/ /opt/kafka && \
-    rm -rf /opt/kafka_2.12-2.3.1.tgz && \
+    rm -rf /opt/kafka_2.12-2.3.1.tgr.gz && \
     rm -rf /opt/zookeeper-3.4.14.tar.gz && \
     mkdir -p /var/zookeeper && \
     mkdir -p /var/kafka-logs && \
@@ -19,7 +19,7 @@ RUN \
 
 COPY ./config/zoo.cfg /opt/zookeeper/conf/zoo.cfg
 
-COPY ./config/server.properties.template /opt/server.properties.template
+COPY ./config/server.properties.tmpl /opt/server.properties.tmpl
 
 ENV \
     KAFKA_HOME=/opt/kafka \

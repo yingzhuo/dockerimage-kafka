@@ -2,7 +2,7 @@
 
 set -e
 
-docktool filegen -t="/opt/server.properties.template" -o="/opt/kafka/config/server.properties"
+docktool filegen -t="/opt/server.properties.tmpl" -o="/opt/kafka/config/server.properties"
 
 bash /opt/zookeeper/bin/zkServer.sh start
 
