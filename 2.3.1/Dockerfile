@@ -11,7 +11,7 @@ RUN \
     tar -zxf /opt/kafka_2.12-2.3.1.tgr.gz -C /opt && \
     ln -sf /opt/zookeeper-3.4.14/ /opt/zookeeper && \
     ln -sf /opt/kafka_2.12-2.3.1/ /opt/kafka && \
-    rm -rf /opt/kafka_2.12-2.3.1.tgr.gz && \
+    rm -rf /opt/kafka_2.12-2.3.1.tar.gz && \
     rm -rf /opt/zookeeper-3.4.14.tar.gz && \
     mkdir -p /var/zookeeper && \
     mkdir -p /var/kafka-logs && \
