@@ -19,4 +19,5 @@ services:
     - "${PWD}/data/kafka-logs/:/var/kafka-logs/"
     environment:
     - "KAFKA_ADVERTISED_HOST_NAME=192.168.99.114"
+    - "KAFKA_ADVERTISED_PORT=9092"
 ```
