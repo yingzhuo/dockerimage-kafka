@@ -2,7 +2,9 @@
 
 set -e
 
-docktool filegen -t="/opt/server.properties.tmpl" -o="/opt/kafka/config/server.properties"
+docktool --quiet test --env="KAFKA_ADVERTISED_PORT"
+
+docktool --quiet filegen -t="/opt/server.properties.tmpl" -o="/opt/kafka/config/server.properties"
 
 bash /opt/zookeeper/bin/zkServer.sh start
 

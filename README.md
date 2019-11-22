@@ -18,6 +18,7 @@ services:
     - "${PWD}/data/zookeeper/:/var/zookeeper"
     - "${PWD}/data/kafka-logs/:/var/kafka-logs/"
     environment:
+    - "KAFKA_BROKER_ID=0"
     - "KAFKA_ADVERTISED_HOST_NAME=192.168.99.114"
     - "KAFKA_ADVERTISED_PORT=9092"
 ```
