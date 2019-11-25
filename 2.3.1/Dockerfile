@@ -7,10 +7,12 @@ COPY ./docker-entrypoint.sh /bin/docker-entrypoint.sh
 RUN \
     wget "https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/2.3.1/kafka_2.12-2.3.1.tgz" -O /opt/kafka_2.12-2.3.1.tar.gz && \
     tar -zxf /opt/kafka_2.12-2.3.1.tar.gz -C /opt && \
-    ln -sf /opt/kafka_2.12-2.3.1/ /opt/kafka && \
+    mv /opt/kafka_2.12-2.3.1/ /opt/kafka && \
     rm -rf /opt/kafka_2.12-2.3.1.tar.gz && \
     mkdir -p /var/kafka-logs && \
-    chmod +x /bin/docker-entrypoint.sh
+    chmod +x /bin/docker-entrypoint.sh && \
+    rm -rf /opt/kafka/LICENSE /opt/kafka/NOTICE /opt/kafka/site-docs /opt/kafka/bin/windows && \
+    find /opt/kafka -name "*.asc" -delete
 
 COPY ./config/server.properties.tmpl /opt/server.properties.tmpl
 

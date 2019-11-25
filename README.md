@@ -9,11 +9,9 @@ version: "3.7"
 
 services:
   zookeeper:
-    image: "registry.cn-shanghai.aliyuncs.com/yingzhuo/zookeeper:3.4.14"
+    image: "registry.cn-shanghai.aliyuncs.com/yingzhuo/zookeeper:3.5.6"
     container_name: "kafka-zk"
     restart: "always"
-    volumes:
-    - "${PWD}/data/zookeeper/:/var/zookeeper"
 
   kafka:
     image: "registry.cn-shanghai.aliyuncs.com/yingzhuo/kafka:2.3.1"
@@ -24,7 +22,7 @@ services:
     ports:
     - "9092:9092"
     volumes:
-    - "${PWD}/data/kafka-logs/:/var/kafka-logs/"
+    - "${PWD}/data/:/var/kafka-logs/"
     environment:
     - "KAFKA_BROKER_ID=0"
     - "KAFKA_ADVERTISED_HOST_NAME=10.211.55.2"
