@@ -9,8 +9,6 @@ RUN \
     tar -zxf /opt/kafka_2.12-2.3.1.tar.gz -C /opt && \
     mv /opt/kafka_2.12-2.3.1/ /opt/kafka && \
     rm -rf /opt/kafka_2.12-2.3.1.tar.gz && \
-    mkdir -p /var/kafka-logs && \
-    chmod +x /bin/docker-entrypoint.sh && \
     rm -rf /opt/kafka/LICENSE /opt/kafka/NOTICE /opt/kafka/site-docs /opt/kafka/bin/windows && \
     find /opt/kafka -name "*.asc" -delete
 
@@ -31,4 +29,4 @@ EXPOSE 9092
 
 VOLUME /var/kafka-logs
 
-CMD ["docker-entrypoint.sh"]
+CMD ["bash", "docker-entrypoint.sh"]
