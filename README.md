@@ -136,3 +136,7 @@ networks:
   kafka-cluster-network:
     driver: bridge
 ```
+
+### 参考
+
+* [dockerimage-zookeeper](https://github.com/yingzhuo/dockerimage-zookeeper)
