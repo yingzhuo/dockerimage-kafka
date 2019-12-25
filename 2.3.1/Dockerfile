@@ -1,4 +1,4 @@
-FROM registry.cn-shanghai.aliyuncs.com/yingzhuo/java:8-jre
+FROM registry.cn-shanghai.aliyuncs.com/yingzhuo/java:8
 
 MAINTAINER 应卓 yingzhor@gmail.com
 
