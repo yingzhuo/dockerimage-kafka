@@ -1,9 +1,8 @@
 FROM registry.cn-shanghai.aliyuncs.com/yingzhuo/java:8
 
-MAINTAINER 应卓 yingzhor@gmail.com
+LABEL maintainer="应卓 <yingzhor@gmail.com>"
 
-ENV \
-    KAFKA_HOME=/opt/kafka \
+ENV KAFKA_HOME=/opt/kafka \
     KAFKA_VERSION=2.3.1 \
     KAFKA_SCALA_VERSION=2.12 \
     KAFKA_BROKER_ID=0 \
