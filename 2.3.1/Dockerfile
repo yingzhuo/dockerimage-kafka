@@ -9,7 +9,7 @@ ENV KAFKA_HOME=/opt/kafka \
     KAFKA_ADVERTISED_PORT=9092 \
     KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
 
-ARG DOWNLOAD_LINK="https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz"
+ARG DOWNLOAD_LINK="https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz"
 ARG TGZ="/opt/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tar.gz"
 
 COPY ./docker-entrypoint.sh /bin/docker-entrypoint.sh
@@ -31,4 +31,4 @@ EXPOSE 9092
 
 VOLUME /var/kafka-logs
 
-CMD ["bash", "/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "/bin/docker-entrypoint.sh"]
