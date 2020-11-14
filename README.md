@@ -9,7 +9,7 @@ version: "3.9"
 
 services:
   zookeeper:
-    image: "registry.cn-shanghai.aliyuncs.com/yingzhuo/zookeeper:3.5.7"
+    image: "registry.cn-shanghai.aliyuncs.com/yingzhuo/zookeeper:3.5.8"
     container_name: "kafka-zk"
     restart: "always"
 
