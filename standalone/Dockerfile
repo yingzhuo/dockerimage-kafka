@@ -13,11 +13,11 @@ ENV KAFKA_ADVERTISED_HOST="127.0.0.1"
 ENV KAFKA_ADVERTISED_PORT=9092
 
 ARG ZOOKEEPER_VERSION=3.6.2
-ARG ZOOKEEPER_DOWNLOAD_LINK="https://archive.apache.org/dist/zookeeper/stable/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz"
+ARG ZOOKEEPER_DOWNLOAD_LINK="https://apache.claz.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz"
 
 ARG KAFKA_VERSION=2.6.0
 ARG KAFKA_SCALA_VERSION=2.13
-ARG KAFKA_DOWNLOAD_LINK="https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz"
+ARG KAFKA_DOWNLOAD_LINK="https://apache.claz.org/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz"
 
 RUN wget ${ZOOKEEPER_DOWNLOAD_LINK} -O /opt/zookeeper.tgz && \
     wget ${KAFKA_DOWNLOAD_LINK} -O /opt/kafka.tgz && \
