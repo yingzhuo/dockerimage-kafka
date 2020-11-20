@@ -56,4 +56,6 @@ EXPOSE 2181 \
     9092 \
     36437
 
+VOLUME /var/data
+
 ENTRYPOINT ["docker-entrypoint.sh"]
