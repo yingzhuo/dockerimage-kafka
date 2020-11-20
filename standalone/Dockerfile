@@ -19,6 +19,8 @@ ARG KAFKA_VERSION=2.6.0
 ARG KAFKA_SCALA_VERSION=2.13
 ARG KAFKA_DOWNLOAD_LINK="https://apache.claz.org/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz"
 
+COPY ./docker-entrypoint.sh /bin/docker-entrypoint.sh
+
 RUN wget ${ZOOKEEPER_DOWNLOAD_LINK} -O /opt/zookeeper.tgz && \
     wget ${KAFKA_DOWNLOAD_LINK} -O /opt/kafka.tgz && \
     tar -zxf /opt/zookeeper.tgz -C /opt && \
@@ -42,7 +44,6 @@ RUN wget ${ZOOKEEPER_DOWNLOAD_LINK} -O /opt/zookeeper.tgz && \
     rm -rf ${KAFKA_HOME}/site-docs && \
     rm -rf ${KAFKA_HOME}/bin/windows
 
-COPY ./docker-entrypoint.sh /bin/docker-entrypoint.sh
 COPY ./shell/zk/zoo.cfg ${ZOOKEEPER_HOME}/conf/zoo.cfg
 COPY ./shell/zk/zkServer.sh ${ZOOKEEPER_HOME}/bin/zkServer.sh
 COPY ./shell/kafka/server.properties ${KAFKA_HOME}/config/server.properties.tmpl
