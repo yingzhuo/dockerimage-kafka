@@ -6,20 +6,21 @@ USER root:root
 
 ENV JMXDISABLE=true
 ENV ZOOKEEPER_HOME=/opt/zookeeper
+ENV ZOOKEEPER_DATA_DIR=/var/data/zookeeper
+ENV ZOOKEEPER_VERSION=3.6.2
+ARG ZOOKEEPER_DOWNLOAD_LINK="https://apache.claz.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz"
+
 ENV KAFKA_HOME=/opt/kafka
+ENV KAFKA_DATA_DIR=/var/data/kafka
 ENV PATH=$PATH:$ZOOKEEPER_HOME/bin:$KAFKA_HOME/bin
 ENV KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
 ENV KAFKA_ADVERTISED_HOST="127.0.0.1"
 ENV KAFKA_ADVERTISED_PORT=9092
-
-ARG ZOOKEEPER_VERSION=3.6.2
-ARG ZOOKEEPER_DOWNLOAD_LINK="https://apache.claz.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz"
-
-ARG KAFKA_VERSION=2.6.0
-ARG KAFKA_SCALA_VERSION=2.13
+ENV KAFKA_VERSION=2.6.0
+ENV KAFKA_SCALA_VERSION=2.13
 ARG KAFKA_DOWNLOAD_LINK="https://apache.claz.org/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz"
 
-COPY ./docker-entrypoint.sh /bin/docker-entrypoint.sh
+COPY ./docker-entrypoint.sh /bin/entrypoint.sh
 
 RUN wget ${ZOOKEEPER_DOWNLOAD_LINK} -O /opt/zookeeper.tgz && \
     wget ${KAFKA_DOWNLOAD_LINK} -O /opt/kafka.tgz && \
@@ -32,7 +33,7 @@ RUN wget ${ZOOKEEPER_DOWNLOAD_LINK} -O /opt/zookeeper.tgz && \
     mkdir -p /var/data/zookeeper && \
     mkdir -p /var/data/kafka && \
     echo -n "1" > /var/data/zookeeper/myid && \
-    chmod +x /bin/docker-entrypoint.sh && \
+    chmod +x /bin/entrypoint.sh && \
     rm -rf ${ZOOKEEPER_HOME}/conf/zoo_sample.cfg && \
     rm -rf ${ZOOKEEPER_HOME}/bin/zkServer.sh && \
     rm -rf ${ZOOKEEPER_HOME}/docs/ && \
@@ -42,7 +43,8 @@ RUN wget ${ZOOKEEPER_DOWNLOAD_LINK} -O /opt/zookeeper.tgz && \
     rm -rf ${KAFKA_HOME}/LICENSE && \
     rm -rf ${KAFKA_HOME}/NOTICE && \
     rm -rf ${KAFKA_HOME}/site-docs && \
-    rm -rf ${KAFKA_HOME}/bin/windows
+    rm -rf ${KAFKA_HOME}/bin/windows && \
+    find ${ZOOKEEPER_HOME} -name "*.asc" -delete
 
 COPY ./shell/zk/zoo.cfg ${ZOOKEEPER_HOME}/conf/zoo.cfg
 COPY ./shell/zk/zkServer.sh ${ZOOKEEPER_HOME}/bin/zkServer.sh
@@ -50,12 +52,8 @@ COPY ./shell/kafka/server.properties ${KAFKA_HOME}/config/server.properties.tmpl
 
 RUN chmod +x ${ZOOKEEPER_HOME}/bin/zkServer.sh
 
-EXPOSE 2181 \
-    2888 \
-    3888 \
-    9092 \
-    36437
+EXPOSE 2181 2888 3888 9092 36437
 
 VOLUME /var/data
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
